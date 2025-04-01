@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import userModel from "../models/user.model.js";
+import transporter from "../config/nodemailer.js";
 
 export const register = async (req, res) => {
   const { name, email, password } = req.body;
@@ -26,6 +27,16 @@ export const register = async (req, res) => {
       sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
+
+    // sending welcome email
+    const mailOptions = {
+      from: process.env.SENDER_EMAIL,
+      to: email,
+      subject: "Welcome to Pathak",
+      text: `Welcome to Pathak website. Your account has been created with email id: ${email}`,
+    };
+    await transporter.sendMail(mailOptions);
+
     return res.json({ success: true });
   } catch (error) {
     res.json({ success: false, message: error.message });
@@ -74,7 +85,7 @@ export const logout = async (req, res) => {
       secure: process.env.NODE_ENV === "production",
       sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
     });
-    return res.json({success:true, message: "Logged Out"})
+    return res.json({ success: true, message: "Logged Out" });
   } catch (error) {
     return res.json({ success: false, message: error.message });
   }
