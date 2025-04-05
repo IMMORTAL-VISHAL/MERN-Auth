@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 const Login = () => {
 
-  const [state, setState] = useState('Sign up')
+  const [state, setState] = useState('LogIn')
 
   return (
     <div>
