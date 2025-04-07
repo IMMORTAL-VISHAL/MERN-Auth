@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
 const EmailVerify = () => {
   return (
     <div>
-        <h1> Email Verify</h1>
+      <h1>Email Verify</h1>
     </div>
-  )
-}
+  );
+};
 
-export default EmailVerify
+export default EmailVerify;
