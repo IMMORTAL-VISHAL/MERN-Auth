@@ -5,13 +5,12 @@ import { AppContext } from "../context/AppContext";
 
 const Login = () => {
   const navigate = useNavigate();
-  const {backendUrl, setIsLoggedIn} = useContext(AppContext)
+  const { backendUrl, setIsLoggedIn } = useContext(AppContext);
 
   const [state, setState] = useState("Sign Up");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
 
   return (
     <div className="flex items-center justify-center min-h-screen px-6 sm:px-0 bg-gradient-to-br from-blue-200 to-purple-400">
